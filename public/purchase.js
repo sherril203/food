@@ -5,6 +5,9 @@ const date = `${now.getDate().toString().padStart(2, '0')}/${(now.getMonth() + 1
 
 async function handlePurchase1(event) {
     event.preventDefault();
+
+    console.log('hhhhweees');
+    
     
     // Debug: Log cart data first
     const cartData = localStorage.getItem('cart');
@@ -20,10 +23,10 @@ async function handlePurchase1(event) {
     }
 
     // Get form elements
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const address = document.getElementById('address').value;
-    const mobile = document.getElementById('mobile').value;
+    const name = document.getElementById('orderName')?.value;
+    // const email = document.getElementById('email')?.value;
+    const address = document.getElementById('orderAddress')?.value;
+    const mobile = document.getElementById('orderMobile')?.value;
     
     // Get current date and time
     const now = new Date();
@@ -61,7 +64,7 @@ async function handlePurchase1(event) {
         orderId: `ORD${Date.now().toString().slice(-8)}`,
         date: date,
         time: time,
-        customerName: name,
+        name: name,
         address: address,
         mobile: mobile,
         paymentMethod: paymentMethod,
@@ -73,46 +76,45 @@ async function handlePurchase1(event) {
     console.log('Order being saved:', order); // Debug log
 
     // TODO:
-    // try {
-    //     const response = await fetch('http://localhost:4010/orders', {
-    //       method: 'POST', // Specify the HTTP method
-    //       headers: {
-    //         'Content-Type': 'application/json', // Inform the server about the data format
-    //       },
-    //       body: JSON.stringify(order), // Convert the order data to JSON
-    //     });
+    try {
+        const response = await fetch('http://localhost:4010/placeOrder', {
+          method: 'POST', // Specify the HTTP method
+          headers: {
+            'Content-Type': 'application/json', // Inform the server about the data format
+          },
+          body: JSON.stringify(order), // Convert the order data to JSON
+        });
     
-    //     if (response.ok) {
-    //       const result = await response.json();
-    //       console.log('Order submitted successfully:', result);
+        if (response.ok) {
+          const result = await response.json();
+          console.log('Order submitted successfully:', result);
 
-    //       if(result.status === "success") {
-    //         // document.getElementById("text").innerHTML = "Success"
-    //       }
-    //     } else {
-    //       console.error('Failed to submit order:', response.statusText);
-    //     }
-    //   } catch (error) {
-    //     console.error('Error sending order data:', error);
-    //   }
+          if(result.status === "success") {
+            // document.getElementById("text").innerHTML = "Success"
 
-    // Save order to localStorage
-    const existingOrders = JSON.parse(localStorage.getItem('orders')) || [];
-    existingOrders.push(order);
-    localStorage.setItem('orders', JSON.stringify(existingOrders));
-    
-    // Update order ID in success modal
-    document.getElementById('order-id').textContent = order.orderId;
-    
-    // Show success modal
-    document.getElementById('success-modal').style.display = 'block';
-    
-    // Clear cart
-    localStorage.removeItem('cart');
+            // Save order to localStorage
+            const existingOrders = JSON.parse(localStorage.getItem('orders')) || [];
+            existingOrders.push(order);
+            localStorage.setItem('orders', JSON.stringify(existingOrders));
+            
+            // Update order ID in success modal
+            document.getElementById('order-id').textContent = order.orderId;
+            
+            // Show success modal
+            document.getElementById('success-modal').style.display = 'block';
+            
+            // Clear cart
+            localStorage.removeItem('cart');
 
-    // Debug: Log final order
-    console.log('All orders after save:', JSON.parse(localStorage.getItem('orders')));
-
+            // Debug: Log final order
+            console.log('All orders after save:', JSON.parse(localStorage.getItem('orders')));
+          }
+        } else {
+          console.error('Failed to submit order:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error sending order data:', error);
+      }
 
 }
 
@@ -216,7 +218,8 @@ document.getElementById('purchase-form').addEventListener('submit', function(eve
     console.log('Here');
     
     
-    handlePurchase2(event);
+    // handlePurchase2(event);
+    handlePurchase1(event);
 });
 
 // Function to display order summary on purchase page

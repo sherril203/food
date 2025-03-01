@@ -19,7 +19,7 @@ function displayOrders() {
               <span class="order-date">${order.date} ${order.time}</span>
           </div>
           <div class="order-details">
-              <p><strong>Name:</strong> ${order.customerName}</p>
+              <p><strong>Name:</strong> ${order.name}</p>
               <p><strong>Address:</strong> ${order.address}</p>
               <p><strong>Mobile:</strong> ${order.mobile}</p>
               <p><strong>Payment Method:</strong> ${order.paymentMethod}</p>

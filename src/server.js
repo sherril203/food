@@ -69,11 +69,12 @@ app.get('/getAllUsers', async (req,res) =>{
 
 // Define the Order schema
 const orderSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    address: { type: String, required: true },
-    mobile: { type: String, required: true },
+    name: { type: String, required: false },
+    address: { type: String, required: false },
+    mobile: { type: String, required: false },
     paymentMethod: { type: String, required: true },
     orderId: { type: String, required: true },
+    items: { type: Object, required: true },
 });
 // Create a model for the orders collection
 const Order = mongoose.model('Order', orderSchema, 'orders'); // 'orders' is the collection name
