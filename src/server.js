@@ -9,6 +9,8 @@ import Userclass from './models/userModel.js';
 // import GetUser from './models/getUserModel';
 import createCookie from'./cookies/createCookie.js';
 
+import jwt from 'jsonwebtoken'
+
 const port = 4010;
 dotenv.config()
 const app = express();
@@ -18,54 +20,79 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({ origin: '*', credentials: true }));
 
-// Create a model for the users collection
-const userSchema = new mongoose.Schema({
-    name: String,
-    email: String,
-    age: Number,
-});
-const GetUser = mongoose.model('User', userSchema, 'users'); // 'users' is the collection name
-async function fetchAllUsers() {
-    try {
-      // Connect to the MongoDB database
-      await mongoose.connect('mongodb://localhost:27017/e-commerce', {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    });
-      console.log('Connected to MongoDB');
-  
-      // Fetch all documents from the users collection
-      const users = await GetUser.find(); // Retrieves all users from the 'users' collection
-      console.log('All Users:', users);
-
-      //await mongoose.disconnect();
-      //console.log('Disconnected from MongoDB');
-
-      return users;
-      // Disconnect from the database
-    } catch (error) {
-      console.error('Error:', error);
-    }
-    finally {
-        await mongoose.disconnect();
-        console.log('Disconnected from MongoDB');
-    }
-}
 
 app.get('/',(req,res) => {
     res.send("Hi fromsadad backend")
 })
 
-app.get('/getAllUsers', async (req,res) =>{
+// User Schema
+const userLoginSchema = new mongoose.Schema({
+    name: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+});
+
+const User = mongoose.model('User', userLoginSchema);
+
+// Register User (Signup)
+app.post('/signup', async (req, res) => {
     try {
-        const allUsers = await fetchAllUsers();
-        console.log('Fetched Users:', allUsers);
-        res.status(200).json(allUsers);
+        const { name, email, password } = req.body;
+
+        // Check if user already exists
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(400).json({ message: "User already exists" });
+        }
+
+        // Hash password
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        // Save user
+        const newUser = new User({ name, email, password: hashedPassword });
+        await newUser.save();
+
+        res.status(201).json({ message: "User registered successfully" });
     } catch (error) {
-        console.error('Error in /getAllUsers:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.status(500).json({ message: "Internal server error" });
     }
-})
+});
+
+// Login User
+app.post('/login', async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        // Find user
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(400).json({ message: "User not found" });
+        }
+
+        // Compare passwords
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(400).json({ message: "Invalid credentials" });
+        }
+
+        // Check if JWT_SECRET is missing
+        if (!process.env.JWT_SECRET) {
+            console.error("JWT_SECRET is not set!");
+            return res.status(500).json({ message: "Internal server error: JWT Secret missing" });
+        }
+
+        // Generate JWT token
+        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+
+        res.status(200).json({ message: "Login successful", token });
+    } catch (error) {
+        console.error("Login error:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+});
+
+
+
 
 // Define the Order schema
 const orderSchema = new mongoose.Schema({
