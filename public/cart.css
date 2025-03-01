@@ -1,0 +1,140 @@
+/* Cart page container */
+#cart-items {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Individual cart item styling */
+.cart-item {
+  background-color: #ffffff;
+  border-radius: 6px;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Cart item details */
+.cart-item p {
+  margin: 8px 0;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Product name styling */
+.cart-item p:first-child {
+  font-weight: 600;
+  font-size: 18px;
+  color: #2c3e50;
+  flex-basis: 100%;
+  margin-bottom: 12px;
+}
+
+/* Quantity styling */
+.cart-item p:nth-child(2) {
+  color: #666;
+}
+
+/* Price styling */
+.cart-item p:nth-child(3) {
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+/* Total price styling */
+.cart-item p:nth-child(4) {
+  font-weight: 600;
+  color: #2ecc71;
+}
+
+/* Remove button styling */
+.cart-item button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.cart-item button:hover {
+  background-color: #c0392b;
+  transform: translateY(-1px);
+}
+
+/* Cart total section */
+.cart-total {
+  margin-top: 25px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.cart-total h3 {
+  margin: 0;
+  text-align: right;
+  color: #2c3e50;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+/* Empty cart state */
+#cart-items:empty::before {
+  content: 'Your cart is empty';
+  display: block;
+  text-align: center;
+  padding: 40px 20px;
+  color: #95a5a6;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  #cart-items {
+      margin: 10px;
+      padding: 15px;
+  }
+
+  .cart-item {
+      padding: 12px 15px;
+  }
+
+  .cart-item p {
+      font-size: 14px;
+  }
+
+  .cart-item p:first-child {
+      font-size: 16px;
+  }
+
+  .cart-total h3 {
+      font-size: 18px;
+  }
+}
+
+/* Animation for adding/removing items */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(10px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+.cart-item {
+  animation: fadeIn 0.3s ease-out;
+}

@@ -1,0 +1,214 @@
+.add{
+    color: white;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.box {
+    flex: 1; /* This allows the boxes to grow equally */
+    padding: 20px;
+    margin: 10px;
+    background-image: url("urad dhal.jpg");
+    border: 1px solid #b6c5b7;
+    background-repeat:initial;
+}
+.box1 {
+    flex: 1; /* This allows the boxes to grow equally */
+    padding: 20px;
+    margin: 10px;
+    background-image: url("fenugreek-seed.jpg");
+    border: 1px solid #b6c5b7;
+    background-repeat:initial;
+}
+.box2 {
+    flex: 1; /* This allows the boxes to grow equally */
+    padding: 20px;
+    margin: 10px;
+    background-image: url("idly-rice.jpg");
+    border: 1px solid #b6c5b7;
+}
+.box3 {
+    flex: 1; /* This allows the boxes to grow equally */
+    padding: 20px;
+    margin: 10px;
+    background-image: url("idly.png");
+    border: 1px solid #b6c5b7;
+    object-fit: contain;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.recipe-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+
+}
+
+@media (min-width: 768px) {
+    .recipe-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+.card-1{
+        background-color: white;
+        width: 70%; 
+        background-color: #FFFFFF; 
+        padding: 10px; 
+        border: 1px solid #E0E0E0; 
+        height: fit-content;
+}
+.card-2 {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 2px;
+}
+.card-title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #eee;
+}
+
+/* Procedure Styles */
+.procedure-step {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.procedure-step:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.step-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Ingredients Grid */
+.ingredients-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+@media (min-width: 500px) {
+    .ingredients-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.ingredient-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    transition: background-color 0.3s;
+}
+
+.ingredient-card:hover {
+    background-color: #f8f8f8;
+}
+
+.ingredient-image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+.ingredient-name {
+    text-align: center;
+    font-size: 14px;
+}
+.box5 {
+    flex: 1; /* This allows the boxes to grow equally */
+    padding: 20px;
+    margin: 10px;
+    background-image: url("black-pepper.jpg");
+    border: 1px solid #b6c5b7;
+    object-fit: contain;
+}
+.box6 {
+    flex: 1; /* This allows the boxes to grow equally */
+    padding: 20px;
+    margin: 10px;
+    background-image: url("cumin.jpg");
+    border: 1px solid #b6c5b7;
+    object-fit: contain;
+}
+.box7 {
+    flex: 1; /* This allows the boxes to grow equally */
+    padding: 20px;
+    margin: 10px;
+    background-image: url("kismis-raisin.jpg");
+    border: 1px solid #b6c5b7;
+    object-fit: contain;
+}
+.box8 {
+    flex: 1; /* This allows the boxes to grow equally */
+    padding: 20px;
+    margin: 10px;
+    background-image: url("cashew-nut.jpg");
+    border: 1px solid #b6c5b7;
+    object-fit: contain;
+}
+.box9 {
+    flex: 1; /* This allows the boxes to grow equally */
+    padding: 20px;
+    margin: 10px;
+    background-image: url("moong-dal.jpg");
+    border: 1px solid #b6c5b7;
+    object-fit: contain;
+}
+
+.align {
+    text-align: center; /* Aligns text to the right */
+    display: flex; /* Use flexbox for alignment */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center;
+}
+
+.cart {
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Center items vertically */
+    color: black; /* Change text color to black for visibility */
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.cart button {
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white; /* White text for button */
+    border: none; /* No border */
+    padding: 5px 10px; /* Padding for button */
+    border-radius: 5px; /* Rounded corners for button */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+.cart button a {
+    color: white; /* White text for link */
+    text-decoration: none; /* Remove underline */
+}

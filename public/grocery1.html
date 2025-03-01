@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="breakfast.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="food.css">
+    <link rel="icon" href="icon.jpg">
+    <title>Letz Cuk</title>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <img  alt src="icon.jpg" />
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="dish.html"><i class="fas fa-utensils"></i> Dishes</a></li>
+            <li><a href="groceries.html"><i class="fas fa-shopping-basket"></i> Groceries</a></li>
+            <li><a href="contact.html"><i class="fas fa-address-book"></i> Contact</a></li>
+            <li><a href="Services.html"><i class="fas fa-concierge-bell"></i> Services</a></li>
+            <li><a href="testinomial.html"><i class="fas fa-star"></i> Testimonials</a></li>
+            <li><a href="cart.html"><i class="fas fa-shopping-cart"></i> My Cart</a></li>
+        </ul>
+        <div class="b1">
+            <a href="login.html" class="btn login-btn">Login</a>
+            <a href="signup.html" class="btn signup-btn">Sign Up</a>
+        </div>
+      </nav>
+      <br>
+        <div style="background-color: #333;text-align: center; color: white;padding:20px;">
+            <p>GROCERIES</p>
+        </div>  
+        <div>
+            <div class="container">
+                <div class="box">
+                    <!--<h3 style="text-align: center;">URAD DHAL</h3>
+                    <div class="align">
+                        <div class="cart">
+                            <h3>1 kg = ₹120</h3> 
+                            <button><a  href="cart.html" onclick=" return AddToCart('urad-1kg', 1); return false;">Add to cart</a></button>
+                        </div>
+                        <div class="cart">
+                            <h3>2 kg = ₹205</h3> 
+                            <button><a href="cart.html"  onclick=" return AddToCart('urad-2kg', 1); return false;">Add to cart</a></button>
+                        </div>
+                        <div class="cart">
+                            <h3>3 kg = ₹300</h3> 
+                            <button><a href="cart.html"  onclick=" return AddToCart('urad-3kg', 1); return false;">Add to cart</a></button>
+                        </div>
+                    </div>-->
+                    <div class="grocery-item">
+                        <h3>URAD DHAL</h3>
+                        <div class="measurement-controls">
+                            <div class="control-group">
+                                <label>Measure by:</label>
+                                <select  id="unitSelect" onchange="updateQuantityOptions()">
+                                    <option value="grams">Grams</option>
+                                    <option value="kg">Kilograms</option>
+                                </select>
+                            </div>
+                            
+                            <div class="control-group">
+                                <label>Quantity:</label>
+                                <select id="quantitySelect" onchange="updatePrice()">
+                                    < Options will be populated by JavaScript -->
+                                </select>
+                            </div>
+            
+                            <div class="price-display">
+                                Price: ₹<span id="priceDisplay">0.00</span>
+                            </div>
+                            <button class="add-to-cart-btn"><a  href="cart.html" onclick=" return addToCart(); return false;">Add to cart</a></button>
+                        </div>
+                    </div>
+                    <style>
+                        .grocery-item {
+    background-color: #efb99763;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.grocery-item h3 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+.measurement-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.control-group label {
+    min-width: 100px;
+    font-weight: 500;
+}
+
+.control-group select {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.price-display {
+    text-align: right;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.add-to-cart-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #45a049;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+    
+    .grocery-item {
+        padding: 1rem;
+    }
+    
+    .control-group {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+    }
+    
+    .control-group label {
+        min-width: auto;
+    }
+}
+                    </style>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <script>
+        const PRICE_PER_KG = 120;
+//const PRICE_PER_SPOON = 6;
+
+// Initialize the page
+document.addEventListener('DOMContentLoaded', function() {
+    updateQuantityOptions();
+    updatePrice();
+});
+
+// Update quantity dropdown options based on selected unit
+function updateQuantityOptions() {
+    const unitSelect = document.getElementById('unitSelect');
+    const quantitySelect = document.getElementById('quantitySelect');
+    const selectedUnit = unitSelect.value;
+    
+    // Clear existing options
+    quantitySelect.innerHTML = '';
+    
+    // Generate new options based on selected unit
+    switch(selectedUnit) {
+        //case 'spoons':
+            //for(let i = 1; i <= 20; i++) {
+               // addOption(quantitySelect, i, `${i} spoon${i > 1 ? 's' : ''}`);
+           // }
+            //break;
+            
+        case 'grams':
+            for(let i = 1; i <= 20; i++) {
+                const grams = i * 50;
+                addOption(quantitySelect, grams, `${grams}g`);
+            }
+            break;
+            
+        case 'kg':
+            for(let i = 1; i <= 5; i++) {
+                addOption(quantitySelect, i, `${i}kg`);
+            }
+            break;
+    }
+    
+    updatePrice();
+}
+
+// Helper function to add options to select element
+function addOption(select, value, text) {
+    const option = document.createElement('option');
+    option.value = value;
+    option.textContent = text;
+    select.appendChild(option);
+}
+
+// Calculate and update price based on selections
+function updatePrice() {
+    const unitSelect = document.getElementById('unitSelect');
+    const quantitySelect = document.getElementById('quantitySelect');
+    const priceDisplay = document.getElementById('priceDisplay');
+    
+    const selectedUnit = unitSelect.value;
+    const quantity = parseFloat(quantitySelect.value);
+    
+    let price = 0;
+    
+    switch(selectedUnit) {
+        //case 'spoons':
+            //price = quantity * PRICE_PER_SPOON;
+            //break;
+            
+        case 'grams':
+            price = (quantity / 1000) * PRICE_PER_KG;
+            break;
+            
+        case 'kg':
+            price = quantity * PRICE_PER_KG;
+            break;
+    }
+    
+    priceDisplay.textContent = price.toFixed(2);
+}
+
+// Add item to cart
+function addToCart() {
+    const unitSelect = document.getElementById('unitSelect');
+    const quantitySelect = document.getElementById('quantitySelect');
+    const priceDisplay = document.getElementById('priceDisplay');
+
+    const selectedUnit = unitSelect.value;
+    const quantity = parseFloat(quantitySelect.value);
+    const price = parseFloat(priceDisplay.textContent);
+
+    let productId = ''; // Match the ID format used in cart.js
+    if (selectedUnit === 'kg') {
+        productId = `urad-${quantity}kg`;
+    } 
+    else if (selectedUnit === 'g') {
+        productId = `urad-${quantity}g`
+    }     
+    else {
+        alert('Please select a valid weight option.');
+        return;
+    }
+
+    AddToCart(productId, quantity);
+}
+
+    </script>
+    <script src="cart.js"></script>
+    
+</body>
+</html>

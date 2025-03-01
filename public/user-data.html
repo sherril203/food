@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="user.css">
+    <link rel="icon" href="icon.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Letz Cuk</title>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <img alt="" src="icon.jpg" />
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="dish.html"><i class="fas fa-utensils"></i> Dishes</a></li>
+            <li><a href="groceries.html"><i class="fas fa-shopping-basket"></i> Groceries</a></li>
+            <li><a href="contact.html"><i class="fas fa-address-book"></i> Contact</a></li>
+            <li><a href="Services.html"><i class="fas fa-concierge-bell"></i> Services</a></li>
+            <li><a href="testinomial.html"><i class="fas fa-star"></i> Testimonials</a></li>
+        </ul>
+        </div>
+        <div class="menu-bar">
+            <div class="menu-icon" id="menuIcon"><i class="fa-solid fa-bars"></i></div>
+        </div>
+        <div class="dropdown" id="dropdownMenu">
+            <a href="profile.html"><i class="fas fa-user-circle"></i> My Profile</a>
+            <a href="orders.html"><i class="fas fa-shopping-bag"></i> My Orders</a>
+            <a href="index.html"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+        </div>
+      </nav>
+          <!-- Main content can be added here -->
+      <main class="main-content">
+        <!-- Content sections will go here -->
+         <h2> Welcome to Letz Cuk!</h2>
+         <section class="features">
+          <div class="feature-card">
+              <i class="fas fa-truck-fast"></i>
+              <h3>Quick Delivery</h3>
+              <p>Door-step delivery in 15 minutes or less</p>
+          </div>
+          <div class="feature-card">
+              <i class="fas fa-leaf"></i>
+              <h3>Fresh Ingredients</h3>
+              <p>Premium quality, hand-picked produce</p>
+          </div>
+          <div class="feature-card">
+              <i class="fas fa-video"></i>
+              <h3>Video Guides</h3>
+              <p>Step-by-step cooking tutorials</p>
+          </div>
+      </section> 
+      <!-- Add this after the features section in index.html -->
+      <section class="offers-carousel">
+          <h2>Today's Special Offers</h2>
+          <div class="carousel-container">
+              <div class="carousel-track">
+                  <div class="offer-card">
+                      <img src="idly.png" alt="Pasta Special">
+                      <h3>IDLY</h3>
+                      <p class="price"><span class="original">₹18.99</span> <span class="discount">₹14.99</span></p>
+                  </div>
+                  <div class="offer-card">
+                      <img src="pongal.png" alt="Pizza Deal">
+                      <h3>PONGAL</h3>
+                      <p class="price"><span class="original">₹22.99</span> <span class="discount">₹17.99</span></p>
+                  </div>
+                  <div class="offer-card">
+                      <img src="/api/placeholder/300/200" alt="Sushi Combo">
+                      <h3>Sushi Platter</h3>
+                      <p class="price"><span class="original">₹29.99</span> <span class="discount">₹24.99</span></p>
+                  </div>
+              </div>
+          </div>
+      </section>
+      <!-- Add this after the offers-carousel section in index.html -->
+      <section class="virtual-chef">
+          <h2>Cook Like a Pro</h2>
+          <div class="chef-demo-container">
+              <div class="video-container">
+                  <video id="cookingVideo" autoplay loop muted playsinline>
+                      <source src="cooking-demo.mp4" type="video/mp4">
+                      Your browser doesn't support video playback.
+                  </video>
+                  <div class="video-controls">
+                      <button id="playPauseBtn" class="control-btn">
+                          <i class="fas fa-pause"></i>
+                      </button>
+                      <button id="muteBtn" class="control-btn">
+                          <i class="fas fa-volume-mute"></i>
+                      </button>
+                  </div>
+              </div>
+              <div class="recipe-details">
+                  <h3>Homestyle Biryani</h3>
+                  <div class="chef-info">
+                      <img src="/api/placeholder/50/50" alt="Chef Avatar" class="chef-avatar">
+                      <span>Chef Radhika</span>
+                  </div>
+                  <p class="recipe-description">
+                      Learn to make authentic chicken biryani with perfectly cooked rice and aromatic spices. 
+                      Master the layering technique for restaurant-style results at home.
+                  </p>
+                  <div class="recipe-stats">
+                      <span><i class="fas fa-clock"></i> 45 mins</span>
+                      <span><i class="fas fa-signal"></i> Intermediate</span>
+                      <span><i class="fas fa-user-friends"></i> Serves 4</span>
+                  </div>
+                  <button class="buy-ingredients-btn">
+                      <i class="fas fa-shopping-cart"></i> Buy All Ingredients - ₹599
+                  </button>
+              </div>
+          </div>
+        <button class="chat-bot-icon" onclick="toggleChat()">
+            <i class="fas fa-comments"></i>
+            <span class="notification-badge">1</span>
+        </button>
+        <div class="chat-container" id="chatContainer" style="display: none;">
+            <div class="chat-header">
+                <h3 style="margin: 0">Chat with Mobi</h3>
+                <button class="close-btn" onclick="toggleChat()">×</button>
+            </div>
+            
+            <div class="chat-body" id="chatBody">
+                <div class="message bot-message">
+                    <strong>Mobi:</strong> Hello! How can I help you today?
+                </div>
+            </div>
+    
+            <div class="chat-footer">
+                <input type="text" class="chat-input" id="userInput" placeholder="Type your message..." onkeypress="handleKeyPress(event)">
+                <button class="send-btn" onclick="sendMessage()">Send</button>
+            </div>
+    
+            <div class="suggested-queries">
+                <p style="margin: 0 0 8px 0">Try asking about:</p>
+                <div class="query-chips">
+                    <button class="query-chip" onclick="sendQuery('how are you')">How are you?</button>
+                    <button class="query-chip" onclick="sendQuery('phone number')">Contact Details</button>
+                    <button class="query-chip" onclick="sendQuery('from ?')">Location</button>
+                </div>
+            </div>
+        </div>
+      </section>
+    </main>
+      <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <div class="footer-section">
+                    <h4>Legal Information</h4>
+                    <ul>
+                        <li><a href="/privacy-policy">Privacy Policy</a></li>
+                        <li><a href="/terms-conditions">Terms & Conditions</a></li>
+                        <li><a href="/return-policy">Return Policy</a></li>
+                        <li><a href="/cookie-policy">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Letz Cuk. All rights reserved.</p>
+            <div class="payment-methods">
+                <i class="fab fa-cc-visa"></i>
+                <i class="fab fa-cc-mastercard"></i>
+                <i class="fab fa-cc-paypal"></i>
+                <i class="fab fa-google-pay"></i>
+            </div>
+        </div>
+    </footer>
+     
+    <script src="user.js"></script>
+    
+</body>
+</html>

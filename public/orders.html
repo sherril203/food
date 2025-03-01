@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders - Letz Cuk</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="orders.css">
+    <link rel="stylesheet" href="user.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <img alt="" src="icon.jpg" />
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="dish.html"><i class="fas fa-utensils"></i> Dishes</a></li>
+            <li><a href="groceries.html"><i class="fas fa-shopping-basket"></i> Groceries</a></li>
+            <li><a href="contact.html"><i class="fas fa-address-book"></i> Contact</a></li>
+            <li><a href="Services.html"><i class="fas fa-concierge-bell"></i> Services</a></li>
+            <li><a href="testinomial.html"><i class="fas fa-star"></i> Testimonials</a></li>
+        </ul>
+        </div>
+        <div class="menu-bar">
+            <div class="menu-icon" id="menuIcon"><i class="fa-solid fa-bars"></i></div>
+        </div>
+        <div class="dropdown" id="dropdownMenu">
+            <a href="profile.html"><i class="fas fa-user-circle"></i> My Profile</a>
+            <a href="orders.html"><i class="fas fa-shopping-bag"></i> My Orders</a>
+            <a href="#section3"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+        </div>
+      </nav>
+
+    <main class="orders-container">
+        <h1>My Orders</h1>
+        <div id="orders-list">
+            <!-- Orders will be populated here by JavaScript -->
+        </div>
+    </main>
+    <script src="user.js"></script>
+    <script src="orders.js"></script>
+   
+</body>
+</html>
