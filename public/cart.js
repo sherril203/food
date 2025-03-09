@@ -21,7 +21,7 @@ function AddToCart(productId, quantity) {
         'urad-2kg': { name: 'Urad Dhal', price: 205, weight: '2kg' },
         'urad-3kg': { name: 'Urad Dhal', price: 300, weight: '3kg' },
         'urad-4kg': { name: 'Urad Dhal', price: 450, weight: '4kg' },
-        'urad-50g': { name: 'Urad Dhal', price: 50, weight: '50g' },
+        'urad-50g': { name: 'Urad Dhal', price: 6, weight: '50g' },
         'Idly-rice-1kg': { name: 'Idly Rice', price: 120, weight: '1kg' },
         'Idly-rice-2kg': { name: 'Idly Rice', price: 205, weight: '2kg' },
         'Idly-rice-3kg': { name: 'Idly Rice', price: 300, weight: '3kg' },
